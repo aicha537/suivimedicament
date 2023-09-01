@@ -13,10 +13,25 @@
   
   .page-title {
     color: #333;
-    margin-bottom: 10px;
+  margin-bottom: 10px;
+  display: inline-block; /* Pour permettre la transition */
+  position: relative; /* Pour positionner l'icône */
+  }
+  .page-title::before {
+    content: "\f0ca"; /* Code de l'icône "fa-list-ul" */
+    font-family: "Font Awesome 5 Free"; /* Font Awesome font-family */
+    position: absolute;
+    left: -30px; /* Ajuste la position de l'icône */
+    opacity: 0; /* L'icône est initialement invisible */
+    transition: left 0.3s ease-in-out, opacity 0.3s ease-in-out;
   }
   
-  .medicaments-table {
+  .page-title:hover::before {
+    left: -40px; /* Ajuste la position pendant le survol */
+    opacity: 1; /* Rend l'icône visible au survol */
+  }
+  
+  .tableau-medicat {
     width: 100%;
     border-collapse: collapse;
     margin-bottom: 20px;
@@ -28,10 +43,11 @@
   }
   
   th {
-    background-color: #f0f0f0;
+    background-color: green;
+    color: #f0f0f0;
   }
   
-  .action-button {
+  .sup-btn{
     background-color: #d9534f;
     color: white;
     border: none;
@@ -39,13 +55,20 @@
     cursor: pointer;
   }
   
-  .add-button {
+  .btn-ajout {
     background-color: #5cb85c;
     color: white;
     border: none;
     padding: 8px 16px;
     cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s; /* Transition d'animation */
   }
+  
+  .btn-ajout:hover {
+    background-color: #449d44;
+    transform: scale(1.1); /* Agrandissement au survol */
+  }
+  
   
   .overlay {
     position: fixed;
@@ -59,14 +82,14 @@
     align-items: center;
   }
   
-  .form-container {
+  .form-conteneur {
     background-color: white;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
   }
-  .form-title {
-    color: #333;
+  .formul-titre {
+    color: green;
     margin-bottom: 20px;
   }
   
@@ -74,18 +97,18 @@
     margin-bottom: 16px;
   }
   
-  .form-label {
+  .formul-label {
     font-weight: bold;
   }
   
-  .form-input {
+  .formul-input {
     width: 100%;
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 4px;
   }
   
-  .form-button {
+  .btn-vali {
     background-color: #5cb85c;
     color: white;
     border: none;
@@ -93,9 +116,37 @@
     cursor: pointer;
   }
   
-  .form-button.cancel {
-    background-color: #d9534f;
+  .btn-annuler {
+    background-color: gray;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    cursor: pointer
   }
   h2{
     text-align: center;
   }
+  .icon-list {
+    font-size: 24px;
+    margin-right: 10px;
+    animation: pulse 1s infinite;
+  }
+  
+  @keyframes pulse {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.1);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+  .validation-message {
+    display: none;
+    color: green;
+    font-size: 14px;
+    margin-top: 10px;
+  }
+  

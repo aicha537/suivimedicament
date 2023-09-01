@@ -1,7 +1,8 @@
 <h2>Liste de médicaments</h2>
+<i class="fas fa-list-ul icon-list"></i>
 <div class="medicaments-liste-conteneur">
     
-    <table class="medicaments-table">
+    <table class="tableau-medicat">
       <thead>
         <tr>
           <th>Id</th>
@@ -18,7 +19,7 @@
           <td>{{ medicament.dosage }}</td>
           <td>{{ medicament.frequence }}</td>
           <td>
-            <button class="action-button" (click)="supprimerMedicament(medicament.id)">
+            <button class="sup-btn" (click)="supprimerMedicament(medicament.id)">
               Supprimer
             </button>
           </td>
@@ -28,30 +29,44 @@
         </tr>
       </tbody>
     </table>
-    <button class="add-button" (click)="showForm = true">Ajouter</button>
+    <button class="btn-ajout" (click)="showForm = true">Ajouter</button>
     <div *ngIf="showForm" class="overlay">
-        <div class="form-container">
-          <h2 class="form-title">Ajout de médicament</h2>
+        <div class="form-conteneur">
+          <h2 class="formul-titre">Ajout de médicament</h2>
           <form [formGroup]="mediForm" (ngSubmit)="submitMedicamentForm()">
             <div class="form-group">
-              <label class="form-label">id</label>
-              <input class="form-input" type="number"formControlName="id"/>
+              <label class="formul-label">id</label>
+              <input class="formul-input" type="number"formControlName="id"/>
             </div>
             <div class="form-group">
-              <label class="form-label">Nom</label>
-              <input class="form-input" type="text"formControlName="nom"/>
+              <label class="formul-label">Nom</label>
+              <input class="formul-input" type="text"formControlName="nom"/>
             </div>
             <div class="form-group">
-              <label class="form-label">Dosage</label>
+              <label class="formul-label">Dosage</label>
               <input
-                class="form-input"type="text" formControlName="dosage"/>
+                class="formul-input"type="checkbox" formControlName="dosage"/>
+                <input type="checkbox" id="matin" name="matin" value="matin" />
+                  <label for="matin">Matin</label>
+                  <input type="checkbox" id="midi" name="midi" value="midi" />
+                  <label for="midi">Midi</label>
+                  <input type="checkbox" id="soir" name="soir" value="soir" />
+                  <label for="soir">Soir</label>
             </div>
             <div class="form-group">
-              <label class="form-label">Fréquence</label>
-              <input class="form-input"type="text"formControlName="frequence"/>
+              <label class="formul-label">Fréquence</label>
+              <input class="formul-input"type="radio"formControlName="frequence"/>
+              <div class="form-group">
+                <label class="formul-label">Dosage</label>
+                <label><input type="radio" name="dosage" value="comprime"> Comprimé</label>
+                <label><input type="radio" name="dosage" value="sirop"> Sirop</label>
+              </div>
+              
             </div>
-            <button class="form-button">Valider</button>
-            <button class="form-button cancel" type="button" (click)="showForm = false">Annuler</button>
+            <button class="btn-vali" (click)="submitMedicamentForm()">Valider</button>
+<div class="validation-message">Votre donnée a été validée avec succès.</div>
+
+            <button class="btn-annuler" type="button" (click)="showForm = false">Annuler</button>
           </form>
     </div>
   

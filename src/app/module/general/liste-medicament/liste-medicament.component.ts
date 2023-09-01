@@ -43,4 +43,6 @@ export class ListeMedicamentComponent implements OnInit {
     this.mediForm.reset();
     this.showForm = false;
   }
+
 }
+
